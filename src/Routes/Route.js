@@ -7,13 +7,14 @@ import {
   } from "react-router-dom";
   import Select from '../Select/SelectComponent';
   import Table from '../Table/Table';
-  
+  import Profile from '../Profile/FilterMultiSelect';
+  import './styles.css';
   export default function Routes() {
     return (
       <Router>
         <div>
           <nav>
-            <ul>
+            <ul style={{display:'inline-flex'}}>
               <li>
                 <Link to="/">Home</Link>
               </li>
@@ -22,6 +23,9 @@ import {
               </li>
               <li>
                 <Link to="/table">Table</Link>
+              </li>
+              <li>
+                <Link to="/profile">Profiles</Link>
               </li>
             </ul>
           </nav>
@@ -35,9 +39,9 @@ import {
             <Route path="/table">
               <Table />
             </Route>
-            {/* <Route path="/">
-              <Home />
-            </Route> */}
+            <Route exact="/profile" path="/profile">
+              <Profile />
+            </Route>
           </Switch>
         </div>
       </Router>
