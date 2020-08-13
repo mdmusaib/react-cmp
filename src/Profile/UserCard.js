@@ -10,49 +10,59 @@ import { Grid } from '@material-ui/core';
     constructor(props){
       super(props);
       this.state={
-        userData:[]
+        userData:[{name:"user1",age:"30",gender:"male",salary:"10000",designation:"react",experience:2},
+        {name:"user2",age:"20",gender:"male",salary:"60000",designation:"engineer",experience:6},
+        {name:"user3",age:"14",gender:"male",salary:"90000",designation:"admin"},
+        {name:"user4",age:"35",gender:"male",salary:"100000",designation:"it",experience:2}],
       }
     }
     componentDidMount(){
-      this.setState({
-        userData:[{name:"Mohammed",age:"30",gender:"male",salary:"10000",designation:"react",experience:2},
-        {name:"Mohammed MAAZ",age:"20",gender:"male",salary:"60000",designation:"Engineer"},
-        {name:"Mohammed UZAIR",age:"14",gender:"male",salary:"90000",designation:"software Engineer"},
-        {name:"Mohammed Saad",age:"35",gender:"male",salary:"100000",designation:"IT",experience:2}],
-      });
+      let historyFilter=JSON.parse(localStorage.getItem('filteredVal'));
+      if(historyFilter!==null){
+       this.filterData(historyFilter); 
+      }
+
     }
     componentDidUpdate(prevState,prevProps){
       if(this.props.filter && this.props.filter.length>0 && this.props.filter!==prevState.filter){
-        // console.log(this.props.filter)
+        console.log('filterData',this.props.filter)
         this.filterData(this.props.filter);
+      }
+      if(this.props.reset && prevState.reset!==this.props.reset){
+        console.log('called')
+        this.setState({
+          userData:[{name:"user1",age:"30",gender:"male",salary:"10000",designation:"react",experience:2},
+          {name:"user2",age:"20",gender:"male",salary:"60000",designation:"engineer",experience:6},
+          {name:"user3",age:"14",gender:"male",salary:"90000",designation:"admin"},
+          {name:"user4",age:"35",gender:"male",salary:"100000",designation:"it",experience:2}],
+        });
       }
     }
 
     filterData=(data)=>{
-      console.log('filterData')
       let filterArr=[];
       let tempUserArray = this.state.userData;
       let filteredArr=[];
       data.map(filterVal=>{
         filterArr.push(JSON.parse(filterVal.value))
       });
-      
       if(filterArr){      
         filterArr.forEach((filter)=>{
 	      tempUserArray.filter((user)=>{ 
-    	  if(user[filter.field] && eval('"'+user[filter.field]+'"' +filter.condition +  '"' + filter.value+ '"')){
+    	  if("'"+user[filter.field]+"'" && eval('"'+user[filter.field]+'"' +filter.condition +  '"' + filter.value+ '"')){
           filteredArr.push(user);
         }
     });
     tempUserArray=[];
     tempUserArray=filteredArr;
+    filteredArr=[];
     });
-    console.log(filteredArr)
       }
        this.setState({
       userData:tempUserArray
+    },()=>{
+      console.log('filtered',this.state.userData,tempUserArray)
     });
-    console.log(tempUserArray)
     }
   render(){
     return (
