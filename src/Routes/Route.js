@@ -39,7 +39,7 @@ import {
             <Route path="/table">
               <Table />
             </Route>
-            <Route exact="/profile" path="/profile">
+            <Route path="/profile">
               <Profile />
             </Route>
           </Switch>
