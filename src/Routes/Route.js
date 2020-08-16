@@ -8,7 +8,6 @@ import {
   import Select from '../Select/SelectComponent';
   import Table from '../Table/Table';
   import Profile from '../Profile/FilterMultiSelect';
-  import MultipleSelect from '../Select/test';
   import './styles.css';
   export default function Routes() {
     return (
@@ -36,7 +35,6 @@ import {
           <Switch>
             <Route path="/select">
               <Select />
-              {/* <MultipleSelect/> */}
             </Route>
             <Route path="/table">
               <Table />
