@@ -8,6 +8,8 @@ import {
   import Select from '../Select/SelectComponent';
   import Table from '../Table/Table';
   import Profile from '../Profile/FilterMultiSelect';
+  import BubbleMap from '../Map/BubbleMap';
+  import GroupedSelect from '../Select/SelectGrouping';
   import './styles.css';
   export default function Routes() {
     return (
@@ -27,6 +29,9 @@ import {
               <li>
                 <Link to="/profile">Profiles</Link>
               </li>
+              <li>
+                <Link to="/map">Map</Link>
+              </li>
             </ul>
           </nav>
   
@@ -41,6 +46,11 @@ import {
             </Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/map"> 
+              {/* <BubbleMap/> */}
+              <GroupedSelect/>
+
             </Route>
           </Switch>
         </div>

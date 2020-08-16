@@ -44,9 +44,6 @@ export default function ControlledOpenSelect() {
     }
   };
 
-  useEffect(() => {
-    generateStateData(countryData);
-  }, [countryData]);
 
 
   const handleChangeCity=(event)=>{
