@@ -30,7 +30,7 @@ import {
                 <Link to="/profile">Profiles</Link>
               </li>
               <li>
-                <Link to="/map">Map</Link>
+                <Link to="/multiselect">Multiselect</Link>
               </li>
             </ul>
           </nav>
@@ -47,7 +47,7 @@ import {
             <Route path="/profile">
               <Profile />
             </Route>
-            <Route path="/map"> 
+            <Route path="/multiselect"> 
               {/* <BubbleMap/> */}
               <GroupedSelect/>
 

@@ -20,7 +20,7 @@ class MultiSelect extends Component{
               options={this.state.groupState}
               displayValue="country"
               groupBy="continent"
-              showCheckbox={true}
+              showCheckbox={false}
             />
     );
 
