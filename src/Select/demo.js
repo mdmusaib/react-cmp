@@ -4,7 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+
 import { Container, Grid } from '@material-ui/core';
 import data from './data';
 
@@ -21,18 +21,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ControlledOpenSelect() {
   const classes = useStyles();
-  
   const [countryData,setCountry]=React.useState([]);
   const [stateData,setStateData]=React.useState([]);
   const [cityData,setCity]=React.useState([]);
-  const [country,setCountryArray]=React.useState(data.Country);
+  const [country,setCountryArray]=React.useState([]);
   const [states,setStateArray]=React.useState([]);
   const [city,setCityArray]=React.useState([]);
-  const [personName, setPersonName] = React.useState([]);
 
   const handleChangeCountry = (event) => {
-    if(event.target.value){ 
+    if(event.target.value){
     setCountry(event.target.value);
+    // event.target.value && generateStateData(value);
     }
     else{
       setCountry([]);
@@ -42,12 +41,13 @@ export default function ControlledOpenSelect() {
       setCityArray([])
     }
   };
-
   useEffect(() => {
     generateStateData(countryData);
   }, [countryData]);
 
-
+  useEffect(() => {
+    setCountryArray(data.Country);
+  }, []);
   const handleChangeCity=(event)=>{
     setCity(event.target.value);
   }
@@ -72,13 +72,15 @@ export default function ControlledOpenSelect() {
       }
     })
   });
-  filteredStateArr.length>0 && setCityArray([]);setCity([]);
+  filteredStateArr.length>0 && setCityArray([]);setCity('');
   filteredStateArr.length>0 && setStateArray(filteredStateArr);
   
   }
   const handleChangeState=(event)=>{
     if(event.target.value){
+      // !stateData.includes(event.target.value) &&
       setStateData(event.target.value);
+    // event.target.value && generateCityData(event.target.value);  
     }else{
       setStateData([]);
       setCity([]);
@@ -92,10 +94,10 @@ export default function ControlledOpenSelect() {
   }, [stateData]);
 
 
-  const generateCityData=(stateArr)=>{
+  const generateCityData=(cityVal)=>{
     const filteredStateArr=[];
     const filteredState=states.filter(filterState=>{
-      stateArr.filter(city=>{
+      cityVal.filter(city=>{
         if(filterState.name===city) {
           filteredStateArr.push(filterState);
         }
@@ -114,21 +116,21 @@ export default function ControlledOpenSelect() {
     });
     filteredCityArr.length>0 && setCityArray(filteredCityArr)
   }
+
   return (
     <Container maxWidth="md">
       <Grid container spacing={12}>
       <Grid item xs={6} sm={3} md={4}>
-  
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">Country</InputLabel>
         <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          value={countryData}
+          labelId="demo-mutiple-name-label"
+          id="demo-mutiple-name"
           multiple
+          value={countryData}
           onChange={handleChangeCountry}
         >
-          <MenuItem value={[]}>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           {country.map((data, index) =>
@@ -147,7 +149,7 @@ export default function ControlledOpenSelect() {
           multiple
           onChange={handleChangeState}
         >
-          <MenuItem value={[]}>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           {states.map((data, index) =>
@@ -162,11 +164,11 @@ export default function ControlledOpenSelect() {
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
-          multiple
           value={cityData}
+          multiple
           onChange={handleChangeCity}
         >
-          <MenuItem value={[]}>
+          <MenuItem value="">
             <em>None</em>
           </MenuItem>
           {city.map((data, index) =>

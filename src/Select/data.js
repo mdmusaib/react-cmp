@@ -50,6 +50,11 @@ const  Country=[
                     country_code: "IN",
                     state_code: "KA"
                     },
+                    {
+                        name:"Austria",
+                        country_code:"AU",
+                        state_code:"AUS",
+                    }
                 
 
 ];
@@ -77,5 +82,11 @@ const  City=[
         country_code: "IN",
         state_code: "TN"
     },
+    {
+        name:"Austin city",
+        country_code:"AU",
+        state_code:"AUS",
+
+    }
 ];
 export default {Country,City,States};

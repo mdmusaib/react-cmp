@@ -29,7 +29,7 @@ import { Grid } from '@material-ui/core';
         this.filterData(this.props.filter);
       }
       if(this.props.reset && prevState.reset!==this.props.reset){
-        console.log('called')
+        
         this.setState({
           userData:[{name:"user1",age:"30",gender:"male",salary:"10000",designation:"react",experience:2},
           {name:"user2",age:"20",gender:"male",salary:"60000",designation:"engineer",experience:6},
