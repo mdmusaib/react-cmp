@@ -31,6 +31,7 @@ export default function ControlledOpenSelect() {
   const [personName, setPersonName] = React.useState([]);
 
   const handleChangeCountry = (event) => {
+    console.log(event.target.value)
     if(event.target.value){ 
     setCountry(event.target.value);
     }
@@ -128,9 +129,9 @@ export default function ControlledOpenSelect() {
           multiple
           onChange={handleChangeCountry}
         >
-          <MenuItem value={[]}>
+          {/* <MenuItem value=''>
             <em>None</em>
-          </MenuItem>
+          </MenuItem> */}
           {country.map((data, index) =>
             <MenuItem key={data.name} value={data.name} >{data.name}</MenuItem>
           )}
@@ -147,9 +148,9 @@ export default function ControlledOpenSelect() {
           multiple
           onChange={handleChangeState}
         >
-          <MenuItem value={[]}>
+          {/* <MenuItem value=''>
             <em>None</em>
-          </MenuItem>
+          </MenuItem> */}
           {states.map((data, index) =>
             <MenuItem key={data.name} value={data.name} >{data.name}</MenuItem>
           )}
@@ -166,9 +167,9 @@ export default function ControlledOpenSelect() {
           value={cityData}
           onChange={handleChangeCity}
         >
-          <MenuItem value={[]}>
+          {/* <MenuItem value=''>
             <em>None</em>
-          </MenuItem>
+          </MenuItem> */}
           {city.map((data, index) =>
             <MenuItem key={data.name} value={data.name} >{data.name}</MenuItem>
           )}
